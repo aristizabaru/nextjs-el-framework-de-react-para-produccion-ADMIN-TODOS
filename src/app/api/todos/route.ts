@@ -54,3 +54,20 @@ export async function POST ( request: NextRequest ) {
         return NextResponse.json( error, { status: 400 } );
     }
 }
+
+
+export async function DELETE ( request: NextRequest ) {
+
+    try {
+        await prisma.todo.deleteMany( { where: { complete: true } } );
+
+        return NextResponse.json( {
+            ok: true,
+        } );
+    } catch ( error ) {
+        // Este manejo de errores es con fines educativos, en producción
+        // nunca se deberían de enviar errores sin controlar la respuesta
+        // y menos enviar directamente mensajes de error de la BD
+        return NextResponse.json( error, { status: 400 } );
+    }
+}

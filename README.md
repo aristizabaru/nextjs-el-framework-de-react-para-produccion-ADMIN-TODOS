@@ -14,6 +14,9 @@ El proyecto desarrollado a continuación explora la creación de una RESTful API
 - Prisma
 - Prisma + Next
 - Yup - Validador
+- Consumo de RESTful Api desde APP router
+- Client y Server Side Rendering
+- Refresh de una ruta sin afectar estados (NextNavigation)
 
 ## Requerimientos
 
