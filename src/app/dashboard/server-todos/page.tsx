@@ -5,11 +5,11 @@ import prisma from '@/lib/prisma';
 import { NewTodo } from '@/todos/components/NewTodo';
 import { TodosGrid } from '@/todos/components/TodosGrid';
 
-console.log( 'Construida REST' );
+console.log( 'Construida server' );
 
 export const metadata = {
     title: 'TODOS',
-    description: 'Rest TODOS',
+    description: 'Server TODOS',
 };
 
 export default async function RestTodosPage () {
@@ -19,11 +19,12 @@ export default async function RestTodosPage () {
     } );
 
     return (
-        <div >
+        <>
+            <span className='text-3xl mb-4 block'>Server actions</span>
             <div className='w-full px-5 mx-5 mb-8'>
                 <NewTodo />
             </div>
             <TodosGrid todos={ todos } />
-        </div>
+        </>
     );
 }
