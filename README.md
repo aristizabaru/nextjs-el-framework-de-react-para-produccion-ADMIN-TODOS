@@ -19,6 +19,10 @@ El proyecto desarrollado a continuación explora la creación de una RESTful API
 - Refresh de una ruta sin afectar estados (NextNavigation)
 - Server Actions
 - useOptimistic
+- Cookies del lado del servidor
+- Cookies del lado del cliente
+- Carrito de compras
+- Manipulación de cookies
 
 ## Requerimientos
 

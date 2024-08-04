@@ -1,6 +1,29 @@
-import { CiBellOn, CiChat1, CiMenuBurger, CiSearch } from 'react-icons/ci';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
+import { CiBellOn, CiChat1, CiMenuBurger, CiSearch, CiShoppingBasket } from 'react-icons/ci';
+
+interface Cart {
+    [ id: string ]: number;
+}
+
+const getTotalCount = ( cart: Cart ) => {
+    let items = 0;
+
+    Object.values( cart ).forEach( value => {
+        items += value;
+    } );
+
+    return items;
+};
 
 export const TopMenu = () => {
+
+    const cookieStore = cookies();
+    const cart: Cart = JSON.parse( cookieStore.get( 'cart' )?.value ?? '{}' );
+
+    const totalCartCount = getTotalCount( cart );
+
+
     return (
         <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
             <div className="px-6 flex items-center justify-between space-x-4">
@@ -25,9 +48,14 @@ export const TopMenu = () => {
                     <button className="flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
                         <CiChat1 size={ 25 } />
                     </button>
-                    <button className="flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
-                        <CiBellOn size={ 25 } />
-                    </button>
+                    <Link
+                        href={ '/dashboard/cart' }
+                        className="p-2 gap-1 flex items-center justify-center w-16 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
+                        {
+                            totalCartCount > 0 && <span className='text-sm text-blue-500 font-bold'>{ totalCartCount }</span>
+                        }
+                        <CiShoppingBasket size={ 25 } />
+                    </Link>
                 </div>
             </div>
         </div>
