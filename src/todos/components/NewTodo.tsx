@@ -1,15 +1,15 @@
 'use client';
 
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useRef } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
 import { addTodo, deleteTodo } from '../actions/todo-actions';
-// import { createTodo, deleteTodos } from '../helpers/todos';
+import { createTodo, deleteTodos } from '../helpers/todos';
 
 export const NewTodo = () => {
 
     const inputElement = useRef<HTMLInputElement | null>( null );
-    // const router = useRouter();
+    const router = useRouter();
 
     const onSubmit = async ( e: FormEvent ) => {
         e.preventDefault();
@@ -18,18 +18,19 @@ export const NewTodo = () => {
 
         if ( inputValue.length === 0 ) return;
 
-        // await createTodo( inputValue );
-        await addTodo( inputValue );
+        await createTodo( inputValue );
+        // await addTodo( inputValue );
         inputElement.current!.value = '';
 
-        // router.refresh();
+
+        router.refresh();
     };
 
     const deleteCompleted = async () => {
-        // await deleteTodos();
-        // router.refresh();
+        await deleteTodos();
+        router.refresh();
 
-        await deleteTodo();
+        // await deleteTodo();
     };
 
     return (

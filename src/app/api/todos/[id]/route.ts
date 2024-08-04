@@ -1,3 +1,4 @@
+import { getServerUserSession } from '@/auth/actions/auth-actions';
 import prisma from '@/lib/prisma';
 import { NextResponse, NextRequest } from 'next/server';
 import * as yup from 'yup';
@@ -29,12 +30,19 @@ const putSchema = yup.object( {
 } );
 
 export async function PUT ( request: NextRequest, { params }: { params: { id: string; }; } ) {
+    const user = await getServerUserSession();
 
+    if ( !user ) {
+        return NextResponse.json( 'No autorizado', { status: 401 } );
+    }
     try {
         const { id } = params;
         const { description, complete } = await putSchema.validate( await request.json() );
         const updatedTodo = await prisma.todo.update( {
-            where: { id },
+            where: {
+                id,
+                userId: user.id
+            },
             data: {
                 description,
                 complete

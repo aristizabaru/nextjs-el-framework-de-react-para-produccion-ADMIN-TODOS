@@ -23,6 +23,17 @@ El proyecto desarrollado a continuación explora la creación de una RESTful API
 - Cookies del lado del cliente
 - Carrito de compras
 - Manipulación de cookies
+- Auth.js
+- Proveedores
+  - Google
+  - Github
+- Credenciales personalizadas
+- Encriptación de contraseña
+- Relaciones de base de datos
+- Sesión de usuario
+- Server y Client side validation
+- Campos adicionales de usuario
+- Modificación global de usuario de Auth.js
 
 ## Requerimientos
 
@@ -81,6 +92,9 @@ npm run dev
 ```
 http://localhost:3000/api/seed
 ```
+
+- **Usuario pruebas:** `test@gmail.com`
+- **Password pruebas:** `querty`
 
 2. Ejecutar en entorno de producción
 
